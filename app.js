@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const mongoose = require('mongoose');
-const connectionUrl = 'mongodb://localhost/test';
+const connectionUrl = 'mongodb+srv://dbuser:dbuser@cluster0-twxqe.mongodb.net/admin?retryWrites=true&w=majority';
 mongoose.connect(connectionUrl, {useNewUrlParser: true});
 const db = mongoose.connection;
 db.on('error', (err) => console.log(`connection error: ${err}`));
