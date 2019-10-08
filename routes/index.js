@@ -12,7 +12,7 @@ router.post('/webhook', function (req, res, next) {
     const agent = new WebhookClient({request: req, response: res});
 
     // console.log('Dialogflow Request headers >> ' + JSON.stringify(req.headers));
-    console.log('Dialogflow Request body >> ' + JSON.stringify(req.body));
+    // console.log('Dialogflow Request body >> ' + JSON.stringify(req.body));
 
     let intentMap = new Map();
 
