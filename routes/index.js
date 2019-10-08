@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {WebhookClient} = require('dialogflow-fulfillment');
+const {Order} = require('../schema/model');
 
 router.get('/', function (req, res, next) {
     res.send(`Server is up and running.`);
@@ -23,6 +24,13 @@ router.post('/webhook', function (req, res, next) {
 
     function bookHotel(agent) {
         let params = agent.parameters;
+        var order = new Order(params);
+        return order.save(function (err, order) {
+            if (err) return console.error(err);
+            console.error(order.speak());
+            return agent.add(order.speak());
+        });
+/*
         return firestore.collection('orders')
             .add(params)
             .then((docRef) => {
@@ -33,6 +41,7 @@ router.post('/webhook', function (req, res, next) {
                 console.log(`Error in adding document ${err}`);
                 return agent.add(`Error in adding document ${err}`);
             });
+*/
     }
 
     function countBookings(agent) {
