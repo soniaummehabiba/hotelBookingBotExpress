@@ -25,7 +25,7 @@ router.post('/webhook', function (req, res, next) {
     function bookHotel(agent) {
         let params = agent.parameters;
         var order = new Order(params);
-        return order.save(function (err, order) {
+        order.save(function (err, order) {
             if (err) {
                 console.error(err);
                 return;

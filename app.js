@@ -7,9 +7,15 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const uri = "mongodb+srv://dbuser:dbuser@cluster0-twxqe.mongodb.net/admin?retryWrites=true&w=majority";
 mongoose.connect(uri, { useNewUrlParser: true });
-const db = mongoose.connection;
-db.on('error', (err) => console.log(`connection error: ${err}`));
-db.once('open', () => console.log('database connection success'));
+mongoose.connection.once('connected', function() {
+  console.log("Mongoose is connected");
+});
+mongoose.connection.once('disconnected', function() {
+  console.log("Mongoose is disconnected");
+});
+mongoose.connection.on('error', function(err) {
+  console.log('Mongoose connection error: ', err);
+});
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
