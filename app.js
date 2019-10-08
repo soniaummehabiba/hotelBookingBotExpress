@@ -7,7 +7,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const db = mongoose.connection;
 const uri = "mongodb+srv://dbuser:dbuser@cluster0-twxqe.mongodb.net/admin?retryWrites=true&w=majority";
-mongoose.connect(uri, { useNewUrlParser: true });
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 db.on('error', (err) => console.log(`connection error: ${err}`));
 db.once('open', () => console.log('database connection success'));
 
