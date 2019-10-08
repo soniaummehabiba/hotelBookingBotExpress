@@ -23,7 +23,7 @@ router.post('/webhook', function (req, res, next) {
     agent.handleRequest(intentMap);
 
     function bookHotel(agent) {
-        let params = agent.parameters;
+        let params = {...agent.parameters, created: Date.now()};
         var order = new Order(params);
         return order.save((err, order) => {
             if (err) {
