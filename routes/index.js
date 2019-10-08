@@ -7,7 +7,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/webhook', function (req, res, next) {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> webhook <<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
     const agent = new WebhookClient({request: req, response: res});
 
@@ -24,7 +23,6 @@ router.post('/webhook', function (req, res, next) {
 
     function bookHotel(agent) {
         let params = agent.parameters;
-        console.log('------------------------------------------------------------------');
         return firestore.collection('orders')
             .add(params)
             .then((docRef) => {
