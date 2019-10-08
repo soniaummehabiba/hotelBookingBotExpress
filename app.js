@@ -6,7 +6,7 @@ const logger = require('morgan');
 
 const mongoose = require('mongoose');
 const db = mongoose.connection;
-const uri = "mongodb+srv://dbuser:dbuser@cluster0-twxqe.mongodb.net/admin?retryWrites=true&w=majority";
+const uri = "mongodb+srv://dbuser:dbuser@cluster0-twxqe.mongodb.net/test?retryWrites=true&w=majority";
 const options = {
     // autoIndex: false, // Don't build indexes
     // reconnectTries: 30, // Retry up to 30 times
@@ -29,9 +29,6 @@ const connectWithRetry = () => {
 };
 
 connectWithRetry();
-
-db.once('open', () => console.log('database connection success'));
-db.on('error', (err) => console.log(`connection error: ${err}`));
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
