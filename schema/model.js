@@ -6,8 +6,9 @@ const orderSchema = new Schema({
     email: String,
     roomType: String,
     persons: Number,
-    created: {
+    created_at: {
         type: Date,
+        default: Date.now
     }
 });
 
