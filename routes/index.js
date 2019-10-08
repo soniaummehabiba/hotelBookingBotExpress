@@ -27,13 +27,7 @@ router.post('/webhook', function (req, res, next) {
         var order = new Order(params);
         return order
             .save()
-            .then((err, order) => {
-                console.log(`err, ${err}`);
-                console.log(`order, ${order}`);
-                if (err) {
-                    console.log(`Error in adding document ${err}`);
-                    return agent.add(`Error in adding document ${err}`);
-                }
+            .then(order => {
                 console.log(`order added with ID ${order._id}`);
                 return agent.add(`ok ${params.name} your hotel booking request of ${params.roomType} room for ${params.persons} persons is forwarded \n Have a good day`);
             })
