@@ -6,6 +6,8 @@ router.get('/', function (req, res, next) {
     res.send(`Server is up and running.`);
 });
 
+console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> webhook <<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+
 router.post('/webhook', function (req, res, next) {
     const agent = new WebhookClient({req, res});
 
