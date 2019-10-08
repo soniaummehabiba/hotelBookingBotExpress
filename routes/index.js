@@ -13,7 +13,6 @@ router.post('/webhook', function (req, res, next) {
 
     // console.log('Dialogflow Request headers >> ' + JSON.stringify(req.headers));
     console.log('Dialogflow Request body >> ' + JSON.stringify(req.body));
-    console.log('------------------------------------------------------------------');
 
     let intentMap = new Map();
 
@@ -25,6 +24,7 @@ router.post('/webhook', function (req, res, next) {
 
     function bookHotel(agent) {
         let params = agent.parameters;
+        console.log('------------------------------------------------------------------');
         return firestore.collection('orders')
             .add(params)
             .then((docRef) => {
