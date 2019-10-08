@@ -6,9 +6,9 @@ router.get('/', function (req, res, next) {
     res.send(`Server is up and running.`);
 });
 
-console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> webhook <<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
-
 router.post('/webhook', function (req, res, next) {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> webhook <<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+
     const agent = new WebhookClient({req, res});
 
     // console.log('Dialogflow Request headers >> ' + JSON.stringify(req.headers));
