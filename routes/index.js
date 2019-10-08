@@ -26,8 +26,12 @@ router.post('/webhook', function (req, res, next) {
         let params = agent.parameters;
         var order = new Order(params);
         return order.save(function (err, order) {
-            if (err) return console.error(err);
-            console.error(order.speak());
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.error('order ', order);
+            console.error('order.speak() ', order.speak());
             return agent.add(order.speak());
         });
 /*
