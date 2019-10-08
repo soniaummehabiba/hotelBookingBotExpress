@@ -6,7 +6,7 @@ const logger = require('morgan');
 
 const mongoose = require('mongoose');
 const db = mongoose.connection;
-const uri = "mongodb+srv://dbuser:dbuser@cluster0-twxqe.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://dbuser:dbuser@cluster0-twxqe.mongodb.net/orders?retryWrites=true&w=majority";
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true

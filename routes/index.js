@@ -23,29 +23,16 @@ router.post('/webhook', function (req, res, next) {
     agent.handleRequest(intentMap);
 
     function bookHotel(agent) {
-        console.error('<<<<<<<<<<<<<<<<< book hotel >>>>>>>>>>>>>>> ');
         let params = agent.parameters;
         var order = new Order(params);
         order.save(function (err, order) {
             if (err) {
-                console.error(err);
-                return;
-            }
-            console.error('order >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ', order);
-            // return agent.add(order.speak());
-        });
-/*
-        return firestore.collection('orders')
-            .add(params)
-            .then((docRef) => {
-                console.log(`order added with ID ${docRef.id}`);
-                return agent.add(`ok ${params.name} your hotel booking request of ${params.roomType} room for ${params.persons} persons is forwarded \n Have a good day`);
-            })
-            .catch((err) => {
                 console.log(`Error in adding document ${err}`);
                 return agent.add(`Error in adding document ${err}`);
-            });
-*/
+            }
+            console.log(`order added with ID ${order._id}`);
+            return agent.add(`ok ${params.name} your hotel booking request of ${params.roomType} room for ${params.persons} persons is forwarded \n Have a good day`);
+        });
     }
 
     function countBookings(agent) {
