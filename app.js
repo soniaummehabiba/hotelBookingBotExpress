@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const mongoose = require('mongoose');
+const Promise = require('bluebird');
+mongoose.Promise = Promise;
 const db = mongoose.connection;
 const uri = "mongodb+srv://dbuser:dbuser@cluster0-twxqe.mongodb.net/orders?retryWrites=true&w=majority";
 const options = {
