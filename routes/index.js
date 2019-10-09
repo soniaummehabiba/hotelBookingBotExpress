@@ -40,7 +40,7 @@ router.post('/webhook', function (req, res, next) {
     function countBookings(agent) {
         let query = {};
         return Order
-            .find(query)
+            .find()
             .then(res => {
                 let orders = [];
                 orders.push(res);
