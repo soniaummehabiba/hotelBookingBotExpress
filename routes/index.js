@@ -40,12 +40,13 @@ router.post('/webhook', function (req, res, next) {
     function countBookings(agent) {
         let query = {};
         return Order
-            .find()
+            .find(query)
+            .lean()
             .then(res => {
                 let orders = [];
                 orders.push(res);
                 console.log(`res: ${typeof res} : ${orders.length} : ${res}`);
-                console.log(`orders: ${typeof res} : ${orders.length} : ${orders}`);
+                console.log(`orders: ${typeof orders} : ${orders.length} : ${orders}`);
             })
             .catch(err => {
                 console.log(`Error in getting document ${err}`);
