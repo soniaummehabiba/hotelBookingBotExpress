@@ -38,7 +38,17 @@ router.post('/webhook', function (req, res, next) {
     }
 
     function countBookings(agent) {
-        return firestore.collection("orders")
+        return Order
+            .find({})
+            .then(res => {
+                console.log(`res ${res}`);
+            })
+            .catch(err => {
+                console.log(`Error in getting document ${err}`);
+                return agent.add(`Error in adding document ${err}`);
+            });
+
+       /* return firestore.collection("orders")
             .get()
             .then((querySnapshot) => {
                 let orders = [];
@@ -54,7 +64,7 @@ router.post('/webhook', function (req, res, next) {
             .catch((err) => {
                 console.log(`Error in getting orders ${err}`);
                 return agent.add(`Error getting orders ${err}`);
-            });
+            });*/
     }
 
     function showBookings(agent) {
