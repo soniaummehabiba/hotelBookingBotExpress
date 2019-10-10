@@ -43,7 +43,11 @@ router.post('/webhook', function (req, res, next) {
             .find(query)
             .lean()
             .then(res => {
-                console.log([JSON.stringify(JSON.parse(res))].length);
+                console.log('---------------------------');
+                console.log(res.length, res);
+                console.log(res.json());
+                console.log(res.toJSON());
+                console.log('---------------------------');
             })
             .catch(err => {
                 console.log(`Error in getting document ${err}`);
