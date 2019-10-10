@@ -45,8 +45,6 @@ router.post('/webhook', function (req, res, next) {
             .then(res => {
                 console.log('---------------------------');
                 console.log(res.length, res);
-                console.log(res.json());
-                console.log(res.toJSON());
                 console.log('---------------------------');
             })
             .catch(err => {
