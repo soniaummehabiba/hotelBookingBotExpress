@@ -42,53 +42,34 @@ router.post('/webhook', function (req, res, next) {
         return Order
             .find(query)
             .then(res => {
-                console.log('---------------------------');
-                console.log(res.length, res);
-                console.log('---------------------------');
-            })
-            .catch(err => {
-                console.log(`Error in getting document ${err}`);
-                return agent.add(`Error in adding document ${err}`);
-            });
-
-       /* return firestore.collection("orders")
-            .get()
-            .then((querySnapshot) => {
-                let orders = [];
-
-                querySnapshot.forEach(doc => orders.push(doc.data()));
-
+                let orders = res;
                 if (orders.length) {
                     return agent.add(`you have ${orders.length} orders, would you like to see them?\n`);
                 } else {
                     return agent.add(`you have\'nt order anything yet`);
                 }
             })
-            .catch((err) => {
-                console.log(`Error in getting orders ${err}`);
-                return agent.add(`Error getting orders ${err}`);
-            });*/
+            .catch(err => {
+                console.log(`Error in getting document ${err}`);
+                return agent.add(`Error in adding document ${err}`);
+            });
     }
 
     function showBookings(agent) {
-        return firestore.collection("orders")
-            .get()
-            .then((querySnapshot) => {
-                let orders = [];
-
-                querySnapshot.forEach(doc => orders.push(doc.data()));
-
+        let query = {};
+        return Order
+            .find(query)
+            .then(res => {
+                let orders = res;
                 let speech = `here are your orders, \n The `;
-
                 orders.forEach((order, i) => {
                     speech += `${i + 1} is hotel booking request for ${order.persons} ${order.roomType} rooms ordered by ${order.name} \n`;
                 });
-
                 return agent.add(speech);
             })
             .catch((err) => {
                 console.log(`Error in getting orders ${err}`);
-                return agent.add(`Error getting orders ${err}`);
+                return agent.add(`Error while getting orders ${err}`);
             });
     }
 });
