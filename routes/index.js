@@ -41,9 +41,8 @@ router.post('/webhook', function (req, res, next) {
         let query = {};
         return Order
             .find(query)
-            .lean()
             .then(res => {
-                console.log(JSON.stringify(JSON.parse(res)));
+                console.log([JSON.stringify(JSON.parse(res))].length);
             })
             .catch(err => {
                 console.log(`Error in getting document ${err}`);
