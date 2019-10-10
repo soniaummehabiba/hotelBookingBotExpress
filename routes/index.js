@@ -41,7 +41,6 @@ router.post('/webhook', function (req, res, next) {
         let query = {};
         return Order
             .find(query)
-            .lean()
             .then(res => {
                 console.log('---------------------------');
                 console.log(res.length, res);
